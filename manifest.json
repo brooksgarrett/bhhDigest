@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "BHH Digest",
+  "description": "Create a digest of interesting material which can be used to create a digest style report for sharing.",
+  "version": "1.0",
+
+  "permissions": ["tabs", 
+  		  "storage",
+		  "http://*/*",
+		  "https://*/*"
+  		  ],
+  "browser_action": {
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+    }
+}
