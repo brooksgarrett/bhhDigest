@@ -1,0 +1,4 @@
+*.crx
+*.lock
+*.bak
+.bundle/**/*
