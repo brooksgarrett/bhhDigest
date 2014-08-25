@@ -46,15 +46,30 @@ function buildClicked() {
   chrome.storage.local.get(null, function(items) {
     reportBody += 'data:text/html;charset=utf-8,## ' + today.toLocaleDateString() + '<br />';
     for (var key in items){
-      reportBody += '+&nbsp;&nbsp;' + items[key]['title'] + '  ' + key + '<br /><br />';
+      reportBody += '+&nbsp;&nbsp;[' + items[key]['title'] + '](' + key + ')<br /><br />';
       if (items[key]['snippet']){
         reportBody += '&nbsp;&nbsp;>&nbsp;&nbsp;' + items[key]['snippet'] + '<br /><br />';
       }
     }
-   chrome.storage.local.clear(confirmReport);
+
    window.open(reportBody);
     
   });
+}
+
+function confirmClear() {
+  console.log('Storage cleared.');
+  alert('Storage cleared.');
+}
+
+function clearData() {
+  var r = confirm("Are you sure you want to delete all saved items?");
+  if (r == true) {
+       chrome.storage.local.clear(confirmClear);
+  } else {
+      alert('Aborted!');
+  }
+  
 }
 
 function setState(url) {
@@ -73,10 +88,12 @@ function init() {
   var remove = document.getElementById('remove');
   var add = document.getElementById('add');  
   var report = document.getElementById('report');
+  var clear = document.getElementById('clear');
   today = new Date();
   add.addEventListener('click', addArticle);
   remove.addEventListener('click', removeArticle);
   report.addEventListener('click', buildClicked);
+  clear.addEventListener('click', clearData);
 
   chrome.tabs.query({active: true}, function(tabs) {
     title = tabs[0].title;
@@ -84,7 +101,7 @@ function init() {
     chrome.tabs.executeScript( {code: "window.getSelection().toString();"}, function(selection) {
 	 if (chrome.runtime.lastError) {
 	   /* Report any error */
-	   alert('ERROR:\n' + chrome.runtime.lastError.message);
+	   console.log('bhhDigest can\'t be used here');
 	 } 
 	 else {
 	   snippet = selection;
