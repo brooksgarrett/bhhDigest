@@ -44,7 +44,7 @@ function blockUI(){
 
 function buildClicked() {
   chrome.storage.local.get(null, function(items) {
-    reportBody += 'data:text/html;charset=utf-8,' + today.toLocaleDateString() + '<br />';
+    reportBody += 'data:text/html;charset=utf-8,<br />';
     for (var key in items){
       reportBody += '##&nbsp;&nbsp;[' + items[key]['title'] + '](' + key + ')<br /><br />';
       if (items[key]['snippet']){
