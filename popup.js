@@ -45,6 +45,18 @@ function blockUI(){
 function buildClicked() {
   chrome.storage.local.get(null, function(items) {
     reportBody += 'data:text/html;charset=utf-8,<br />';
+    reportBody += '---<br />'
+    reportBody += 'layout: default<br />'
+    reportBody += 'title: 01/01/2015<br />'
+    reportBody += 'categories: [Discovered]<br />'
+    reportBody += 'tags: [discovered]<br />'
+    reportBody += 'status: published<br />'
+    reportBody += 'type: article<br />'
+    reportBody += 'published: true<br />'
+    reportBody += 'meta:<br />'
+    reportBody += '  _edit_last: 1<br />'
+    reportBody += '---<br />'
+        
     for (var key in items){
       reportBody += '##&nbsp;&nbsp;[' + items[key]['title'] + '](' + key + ')<br /><br />';
       if (items[key]['snippet']){
