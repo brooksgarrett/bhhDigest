@@ -44,10 +44,14 @@ function blockUI(){
 
 function buildClicked() {
   chrome.storage.local.get(null, function(items) {
+    var d = new Date();
+    var month = d.getMonth() + 1;
+    var day = d.getDate();
+    var year = d.getFullYear();
     reportBody += 'data:text/html;charset=utf-8,<br />';
     reportBody += '---<br />'
     reportBody += 'layout: default<br />'
-    reportBody += 'title: 01/01/2015<br />'
+    reportBody += 'title: ' + month + '/' + day + '/' + year +'<br />';
     reportBody += 'categories: [Discovered]<br />'
     reportBody += 'tags: [discovered]<br />'
     reportBody += 'status: published<br />'
